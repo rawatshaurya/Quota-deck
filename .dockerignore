@@ -1,0 +1,13 @@
+.git
+.gitignore
+.npm-cache
+dist
+node_modules
+tools
+*.log
+*.zip
+*.sha256
+Install-QuotaDeck.cmd
+Uninstall-QuotaDeck.cmd
+installer
+scripts

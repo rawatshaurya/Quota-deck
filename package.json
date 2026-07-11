@@ -1,0 +1,32 @@
+{
+  "name": "quota-deck",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "A private live Claude and Codex usage display for a spare phone or tablet.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "node --watch start.mjs",
+    "start": "node start.mjs",
+    "demo": "node server.mjs",
+    "collector": "node collector/run.mjs",
+    "collector:once": "node collector/run.mjs --once",
+    "setup:claude": "node collector/setup-claude.mjs",
+    "build:windows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/Build-WindowsRelease.ps1",
+    "build:github": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/Build-GitHubRelease.ps1",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "files": [
+    "collector/",
+    "lib/",
+    "public/",
+    "server.mjs",
+    "start.mjs",
+    "README.md",
+    "LICENSE.txt",
+    "CHANGELOG.md"
+  ]
+}

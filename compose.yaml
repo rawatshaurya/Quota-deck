@@ -1,0 +1,29 @@
+services:
+  quota-deck:
+    build:
+      context: .
+      target: runtime
+    image: quota-deck:0.2.0
+    container_name: quota-deck
+    restart: unless-stopped
+    init: true
+    ports:
+      - "${QUOTA_DECK_PORT:-4173}:4173"
+    environment:
+      DEMO_MODE: "${DEMO_MODE:-false}"
+      LOCAL_COLLECTORS: "false"
+      DASHBOARD_SECRET: "${DASHBOARD_SECRET:-}"
+      QUOTA_DECK_VIEW_SECRET: "${QUOTA_DECK_VIEW_SECRET:-}"
+      QUOTA_DECK_PAIRING_CODE: "${QUOTA_DECK_PAIRING_CODE:-}"
+    volumes:
+      - quota-deck-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  quota-deck-data:

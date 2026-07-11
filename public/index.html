@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0d10" />
+    <meta name="description" content="A private live Claude and Codex usage display for a spare phone or tablet." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="/manifest.webmanifest?v=0.2.0-r2" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon-180.png" />
+    <link rel="stylesheet" href="/styles.css?v=0.2.0-r2" />
+    <title>Quota Deck</title>
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Quota Deck home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span>Quota Deck</span>
+        </a>
+        <div class="topbar-actions">
+          <span class="mode-pill" id="mode-pill">Demo feed</span>
+          <button class="icon-button hidden" id="pair-button" type="button" aria-label="Pair another device" title="Pair device">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 12h8M12 8v8M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2" />
+            </svg>
+          </button>
+          <button class="icon-button" id="fullscreen-button" type="button" aria-label="Enter fullscreen" title="Fullscreen">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Next allowance reset</p>
+          <h1 id="hero-title" data-hero-countdown>--:--:--</h1>
+          <p class="hero-caption" id="hero-caption">Waiting for usage data</p>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit-ring">
+            <span class="orbit-dot"></span>
+          </div>
+          <div class="orbit-center">
+            <span id="hero-remaining">—</span>
+            <small>remaining</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" aria-labelledby="services-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Connected services</p>
+            <h2 id="services-title">Usage at a glance</h2>
+          </div>
+          <p class="updated-label" id="updated-label">Connecting…</p>
+        </div>
+        <div class="provider-grid" id="provider-grid" aria-live="polite"></div>
+      </section>
+
+      <footer class="display-controls">
+        <div class="connection-state">
+          <span class="status-dot" id="connection-dot"></span>
+          <span id="connection-label">Connecting</span>
+        </div>
+        <div class="control-buttons">
+          <button class="text-button" id="wake-button" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 18h8M9 22h6M12 2a7 7 0 0 0-4 12.7c.7.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z" /></svg>
+            Keep awake
+          </button>
+          <button class="text-button hidden" id="install-button" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" /></svg>
+            Install
+          </button>
+        </div>
+      </footer>
+    </main>
+
+    <section class="pairing-layer hidden" id="pairing-gate" role="dialog" aria-modal="true" aria-labelledby="pairing-title">
+      <div class="pairing-card">
+        <span class="pairing-kicker">Private display</span>
+        <h1 id="pairing-title">Pair this device</h1>
+        <p>Open Quota Deck on the computer and select <strong>Pair device</strong>. Enter the six-digit code shown there.</p>
+        <form id="pairing-form">
+          <label for="pairing-code">Pairing code</label>
+          <input id="pairing-code" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="000000" required />
+          <button class="primary-button" type="submit">Connect securely</button>
+        </form>
+        <p class="pairing-error" id="pairing-error" role="alert"></p>
+        <small>Only usage percentages, reset times, and token counts are shared.</small>
+      </div>
+    </section>
+
+    <section class="pairing-layer hidden" id="setup-panel" role="dialog" aria-modal="true" aria-labelledby="setup-title">
+      <div class="pairing-card setup-card">
+        <button class="close-button" id="setup-close" type="button" aria-label="Close pairing details">×</button>
+        <span class="pairing-kicker">Add a phone or tablet</span>
+        <h1 id="setup-title">Pair another screen</h1>
+        <p>On a device connected to this trusted network, open one of these addresses and enter the code.</p>
+        <div class="pairing-code" id="setup-code">------</div>
+        <div class="setup-urls" id="setup-urls"></div>
+        <small id="setup-security-note">The pairing code changes whenever Quota Deck restarts.</small>
+      </div>
+    </section>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script type="module" src="/app.js?v=0.2.0-r2"></script>
+  </body>
+</html>

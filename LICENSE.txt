@@ -1,0 +1,7 @@
+Quota Deck Source-Available Alpha Notice
+
+Copyright (c) 2026 Quota Deck contributors. All rights reserved.
+
+This alpha release is provided for evaluation and personal use. No permission is granted to sell, sublicense, or redistribute modified versions of the software without written authorization from the copyright holder.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
