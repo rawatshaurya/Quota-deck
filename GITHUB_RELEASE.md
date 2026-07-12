@@ -52,7 +52,7 @@ Quota Deck shares only usage percentages, reset times, plan labels, connection s
 SHA-256:
 
 ```text
-c97091c822fd336b011a5662d1d42d640b6658ae1c43c9f105346a96b9e93fde
+8ae82d7047cae2c1541c063ddbd7fef9e66a4f54383b050dd0a1b519534c2aea
 ```
 
 Quota Deck is an independent project and is not affiliated with, endorsed by, or sponsored by Anthropic or OpenAI.
