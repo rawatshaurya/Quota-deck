@@ -10,7 +10,7 @@ $InstallRoot = Join-Path $InstallBase "QuotaDeck"
 $DataRoot = Join-Path $env:LOCALAPPDATA "QuotaDeck"
 
 if (-not (Test-Path -LiteralPath (Join-Path $PackageRoot "runtime\node.exe"))) {
-  throw "The bundled Node runtime is missing. Download the complete Windows release ZIP."
+  throw "The bundled Node runtime is missing. This is probably GitHub's source archive, not the installable package. Download QuotaDeck-0.2.0-win-x64.zip from https://github.com/rawatshaurya/Quota-deck/releases/latest"
 }
 if (-not (Test-Path -LiteralPath (Join-Path $PackageRoot "app\start.mjs"))) {
   throw "The Quota Deck application files are missing."

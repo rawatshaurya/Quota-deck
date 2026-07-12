@@ -6,7 +6,7 @@ This repository contains the Windows companion service and its installable web d
 
 ## Install the Windows alpha
 
-1. Download QuotaDeck-0.2.0-win-x64.zip from the release.
+1. Download [QuotaDeck-0.2.0-win-x64.zip](https://github.com/rawatshaurya/Quota-deck/releases/download/v0.2.0/QuotaDeck-0.2.0-win-x64.zip) from the GitHub Release assets.
 2. Extract the complete ZIP.
 3. Double-click Install-QuotaDeck.cmd.
 4. Open Quota Deck from the desktop or Start menu.
@@ -14,6 +14,8 @@ This repository contains the Windows companion service and its installable web d
 6. On a phone or tablet connected to the same trusted network, open one of the displayed addresses and enter the six-digit code.
 
 The release bundles its own Node.js runtime. End users do not need Node, npm, a terminal, or administrator access.
+
+Do not use GitHub's automatically generated **Source code (zip)** download for installation. It is intended for developers and does not contain the bundled Node.js runtime.
 
 Quota Deck installs per user in %LOCALAPPDATA%\Programs\QuotaDeck, starts automatically at sign-in, and stores persistent pairing secrets in %LOCALAPPDATA%\QuotaDeck.
 
