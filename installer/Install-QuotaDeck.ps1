@@ -89,8 +89,9 @@ $uninstallShortcut.Save()
 
 Start-Process -FilePath (Join-Path $env:WINDIR "System32\wscript.exe") -ArgumentList ('"' + (Join-Path $InstallRoot "launcher.vbs") + '"') -WindowStyle Hidden
 
+Write-Host "Starting Quota Deck. The first launch may take up to a minute..."
 $ready = $false
-for ($attempt = 0; $attempt -lt 30; $attempt += 1) {
+for ($attempt = 0; $attempt -lt 120; $attempt += 1) {
   Start-Sleep -Milliseconds 500
   try {
     $health = Invoke-RestMethod -Uri "http://localhost:4173/api/health" -TimeoutSec 1
@@ -102,10 +103,12 @@ for ($attempt = 0; $attempt -lt 30; $attempt += 1) {
 }
 
 if (-not $ready) {
-  throw "Quota Deck was installed but did not start. Check $DataRoot\quota-deck.log."
-}
-
-if (-not $NoLaunch) {
+  Write-Warning @"
+Quota Deck is installed but is taking longer than expected to start.
+It may still be finishing a first-run antivirus scan or waiting for a Windows Firewall prompt.
+Open it from the desktop or Start menu in a moment, or check $DataRoot\quota-deck.log.
+"@
+} elseif (-not $NoLaunch) {
   Start-Process "http://localhost:4173/"
 }
 

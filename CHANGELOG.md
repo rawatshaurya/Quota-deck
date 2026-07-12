@@ -17,6 +17,7 @@
 
 ### Changed
 
+- The Windows installer now allows up to 60 seconds for first launch and reports slow startup as a warning instead of a failed installation
 - Consumer releases no longer require a separate Node.js installation
 - External web fonts were removed for privacy and offline reliability
 - Runtime package contents explicitly exclude tests and diagnostic tools
